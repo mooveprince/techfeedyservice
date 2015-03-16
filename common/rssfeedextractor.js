@@ -2,7 +2,7 @@ var FeedParser = require ('feedparser');
 var request = require('request');
 
 
-exports.getTopTrend = function (feedUrl, numberOfTrend, callback) {
+exports.getTopTrend = function (feedUrl, callback) {
     console.log ("Inside RSS Feed Extractor");
     var req = request (feedUrl);
     var fp = new FeedParser ( );
@@ -29,9 +29,7 @@ exports.getTopTrend = function (feedUrl, numberOfTrend, callback) {
       var stream = this;
       var item;
       while (item = stream.read()) {
-        if (itemResult.length < numberOfTrend) {
-            itemResult.push({title: item.title, link: item.link});  
-        }
+        itemResult.push({title: item.title, link: item.link});  
       }    
     });
     

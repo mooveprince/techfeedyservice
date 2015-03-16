@@ -6,9 +6,13 @@ var feedUrl = 'https://news.ycombinator.com/rss';
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    feedExtractor.getTopTrend (feedUrl, '5', function (itemResult) {
+    feedExtractor.getTopTrend (feedUrl, function (itemResult) {
         console.log ("Sending the response for hacker News");
-        res.json (itemResult);
+        if (req.query.limit >= 0 ) {
+            res.json (itemResult.slice(0, req.query.limit));
+        } else {
+            res.json (itemResult);
+        }
     });
     
 });
