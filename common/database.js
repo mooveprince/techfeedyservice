@@ -1,18 +1,18 @@
 var pg = require('pg');
 
-var conString = process.env.DATABASE_URL;
+var conString = process.env.DATABASE_URL ;
 var client = new pg.Client(conString);
 client.connect();
 
 exports.getAccessToken = function (application, callback) {
-    var sql = "SELECT accesstoken FROM oauth where appname = $1 ";
+    var sql = "SELECT clientid, clientsceret, accesstoken FROM oauth where appname = $1 ";
     client.query(sql, [application], function (err, result) {
         if (err) {
             console.log ("Error in executing the query");
             callback(true);
         } else {
             console.log("Result.." + result.rows[0].accesstoken);
-            callback (false, result.rows[0].accesstoken);
+            callback (false, result.rows[0]);
         }  
     });
 }
