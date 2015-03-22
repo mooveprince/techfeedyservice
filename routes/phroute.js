@@ -16,8 +16,8 @@ var getItemsUrl =  {
 var getNewAccessTokenUrl = {
     url : 'https://api.producthunt.com/v1/oauth/token',
     form : {
-        client_id : 'd7ea23ecc9dc9d2b7701f3604c8293be1efd9dea98378ca3225b9cd23ea9369e',
-        client_secret : 'd0cc2ce11a73be7997f247f8c7bab73a1a1fb729fec519dfa7a03160845ed88f',
+        client_id : '',
+        client_secret : '',
         grant_type : 'client_credentials'
     }
 };
@@ -72,28 +72,34 @@ var getItems = function (callback, error) {
 
 //This method get the new access token and persist in DB. This also, make new request to API to get items. 
 var setNewAccessToken = function (callback, error) {
-    request.post(getNewAccessTokenUrl, function(err, response,body) {
-        if(err) {
-            console.log("Error in getting the access token from Product Hunt API " + err);
-        } else if (response.statusCode != 200) {
-            console.log ("Some Error Occurred. Pls check the response" + response);
-        } else {
-            var newAccessDetails = JSON.parse (body);
-            console.log ("New Access token is.." + newAccessDetails.access_token );   
-            query.setAccessToken ('PRODUCTHUNT', newAccessDetails.access_token, function () {
-                oauthHeader.authorization = 'Bearer ' + newAccessDetails.access_token;
-                request(getItemsUrl, function(err, response, body){
-                    if (err) {
-                       error("Error in getting the new items for new access token API " + err);
-                    } else if (response.statusCode != 200) {
-                        error ("Error Occurred while getting new items for new access token" + response);
-                    } else {
-                        var itemResult = JSON.parse (body);
-                        callback (itemResult);
-                    }
+    
+    getAccessToken (function (oauthdetail) {
+        getNewAccessTokenUrl.form.client_id = oauthdetail.clientid;
+        getNewAccessTokenUrl.form.client_secret = oauthdetail.clientsceret;
+        request.post(getNewAccessTokenUrl, function(err, response,body) {
+            if(err) {
+                error("Error in getting the access token from Product Hunt API " + err);
+            } else if (response.statusCode != 200) {
+                error("Some Error Occurred. Pls check the response" + response);
+            } else {
+                var newAccessDetails = JSON.parse (body);
+                query.setAccessToken ('PRODUCTHUNT', newAccessDetails.access_token, function () {
+                    oauthHeader.authorization = 'Bearer ' + newAccessDetails.access_token;
+                    request(getItemsUrl, function(err, response, body){
+                        if (err) {
+                           error("Error in getting the new items for new access token API " + err);
+                        } else if (response.statusCode != 200) {
+                            error ("Error Occurred while getting new items for new access token" + response);
+                        } else {
+                            var itemResult = JSON.parse (body);
+                            callback (itemResult);
+                        }
+                    });
                 });
-            });
-        }
+            }
+        });        
+    }, function (errorMsg) {
+        error(errorMsg);
     });
 }
 
