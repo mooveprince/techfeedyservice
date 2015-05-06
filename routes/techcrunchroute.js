@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 var feedExtractor = require('../common/rssfeedextractor');
-var feedUrl = 'http://fulltextrssfeed.com/techcrunch.com/feed';
+//var feedUrl = 'http://fulltextrssfeed.com/techcrunch.com/feed';
+var feedUrl = 'http://techcrunch.com/feed/';
 
 /* GET home page. */
 router.get('/', function(req, res) {

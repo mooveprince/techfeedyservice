@@ -17,9 +17,9 @@
 10 error You can get their info via:
 10 error     npm owner ls toptechservice
 10 error There is likely additional logging output above.
-11 error System Darwin 14.1.0
+11 error System Darwin 14.3.0
 12 error command "node" "/usr/local/bin/npm" "start"
-13 error cwd /Volumes/Programming/NodeWorkspace/toptechservice
+13 error cwd /Volumes/Programming/NodeWorkspace/techfeedyservice
 14 error node -v v0.10.30
 15 error npm -v 1.4.21
 16 error code ELIFECYCLE
