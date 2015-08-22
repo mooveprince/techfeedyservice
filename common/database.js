@@ -12,12 +12,12 @@ exports.getAccessToken = function (application, callback) {
             callback(true);
         } else {
             callback (false, result.rows[0]);
-        }  
+        }
     });
 }
 
 exports.setAccessToken = function (application, accesstoken, callback) {
-    var sql = "UPDATE oauth SET accesstoken = $1 where appname = $2"
+    var sql = "UPDATE oauth SET accesstoken = $1, updatedate = current_timestamp where appname = $2"
     client.query (sql, [accesstoken, application], function (err, result) {
         if (err) {
             console.log ("Error in executing the query");

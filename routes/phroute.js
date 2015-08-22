@@ -24,18 +24,18 @@ var getNewAccessTokenUrl = {
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    
+
     getAccessToken(function(oauthdetail){
         //oauthHeader.authorization = 'Bearer 4f2cb91e84d49c44527a8f06a0fb253973689bb5f213763820819c679a324341'
-        oauthHeader.authorization = 'Bearer ' + oauthdetail.accesstoken; 
+        oauthHeader.authorization = 'Bearer ' + oauthdetail.accesstoken;
         getItems(function (itemResult) {
             if (req.query.limit >= 0 ) {
                 res.json (itemResult.posts.slice(0, req.query.limit));
             } else {
                 res.json (itemResult.posts);
-            }                
-        }, function(errorMsg) { 
-        res.json({error:errorMsg})});        
+            }
+        }, function(errorMsg) {
+        res.json({error:errorMsg})});
     }, function(errorMsg) {
         res.json({error:errorMsg});
     });
@@ -66,13 +66,13 @@ var getItems = function (callback, error) {
             }, function (errorMsg) { error(errorMsg);});
         } else {
             error ("Some error occured");
-        }      
-    });      
+        }
+    });
 }
 
-//This method get the new access token and persist in DB. This also, make new request to API to get items. 
+//This method get the new access token and persist in DB. This also, make new request to API to get items.
 var setNewAccessToken = function (callback, error) {
-    
+
     getAccessToken (function (oauthdetail) {
         getNewAccessTokenUrl.form.client_id = oauthdetail.clientid;
         getNewAccessTokenUrl.form.client_secret = oauthdetail.clientsceret;
@@ -82,7 +82,7 @@ var setNewAccessToken = function (callback, error) {
             } else if (response.statusCode != 200) {
                 error("Some Error Occurred. Pls check the response" + response);
             } else {
-                var newAccessDetails = JSON.parse (body);
+                var newAccessDetails = JSON.parse (body); //We are using the access token from service directly to get the items
                 query.setAccessToken ('PRODUCTHUNT', newAccessDetails.access_token, function () {
                     oauthHeader.authorization = 'Bearer ' + newAccessDetails.access_token;
                     request(getItemsUrl, function(err, response, body){
@@ -97,7 +97,7 @@ var setNewAccessToken = function (callback, error) {
                     });
                 });
             }
-        });        
+        });
     }, function (errorMsg) {
         error(errorMsg);
     });
