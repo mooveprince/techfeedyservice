@@ -1,6 +1,6 @@
 var pg = require('pg');
 
-var conString = process.env.DATABASE_URL || "postgres://local_admin:1661@localhost:5432/local_admin";
+var conString = process.env.DATABASE_URL;
 var client = new pg.Client(conString);
 client.connect();
 
