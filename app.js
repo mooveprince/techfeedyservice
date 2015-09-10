@@ -9,6 +9,7 @@ var phRoute = require('./routes/phroute');
 var hackernewsRoute = require('./routes/hackernewsroute');
 var techcrunchRoute = require('./routes/techcrunchroute');
 var techmemeRoute = require('./routes/techmemeroute');
+var tweetRoute = require ('./routes/tweetroute');
 
 var app = express();
 
@@ -31,6 +32,7 @@ app.use('/producthunt', phRoute);
 app.use('/hackernews',hackernewsRoute);
 app.use('/techcrunch',techcrunchRoute);
 app.use('/techmeme',techmemeRoute);
+app.use('/tweet', tweetRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

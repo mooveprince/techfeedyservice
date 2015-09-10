@@ -26,7 +26,6 @@ var getNewAccessTokenUrl = {
 router.get('/', function(req, res) {
 
     getAccessToken(function(oauthdetail){
-        //oauthHeader.authorization = 'Bearer 4f2cb91e84d49c44527a8f06a0fb253973689bb5f213763820819c679a324341'
         oauthHeader.authorization = 'Bearer ' + oauthdetail.accesstoken;
         getItems(function (itemResult) {
             if (req.query.limit >= 0 ) {
