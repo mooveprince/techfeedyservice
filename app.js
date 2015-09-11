@@ -10,10 +10,8 @@ var hackernewsRoute = require('./routes/hackernewsroute');
 var techcrunchRoute = require('./routes/techcrunchroute');
 var techmemeRoute = require('./routes/techmemeroute');
 var tweetRoute = require ('./routes/tweetroute');
-<<<<<<< HEAD
 var yoRoute = require ('./routes/yoroute');
-=======
->>>>>>> a0824e086c2484cfaf54a0919ded2c7a1ae30e8e
+
 
 var app = express();
 
@@ -37,10 +35,8 @@ app.use('/hackernews',hackernewsRoute);
 app.use('/techcrunch',techcrunchRoute);
 app.use('/techmeme',techmemeRoute);
 app.use('/tweet', tweetRoute);
-<<<<<<< HEAD
 app.use('/yo', yoRoute);
-=======
->>>>>>> a0824e086c2484cfaf54a0919ded2c7a1ae30e8e
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

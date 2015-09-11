@@ -2,8 +2,8 @@ var express = require('express');
 var request = require('request');
 var router = express.Router();
 
-var consumerKey = process.env.TWEET_CONSUMER_KEY;
-var consumerSecret = process.env.TWEET_CONSUMER_SECRET;
+var consumerKey = process.env.TWEET_CONSUMER_KEY ;
+var consumerSecret = process.env.TWEET_CONSUMER_SECRET ;
 var toBeEncoded = consumerKey + ':' + consumerSecret;
 
 var getTokenOption = {
