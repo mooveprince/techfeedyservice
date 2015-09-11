@@ -7,7 +7,7 @@ var sendYo = {
   form : {
     username: ' ',
     api_token: process.env.YO_API_KEY,
-    link: 'http://techfeedyservice.herokuapp.com/tweet/trends'  //This is where we need to serve our HTML page and call the required service
+    link: 'http://techfeedy.herokuapp.com/trends'  //This is where we need to serve our HTML page and call the required service
   }
 }
 
