@@ -23,10 +23,13 @@ router.get('/', function(req, res) {
   request.post (sendYo, function(error, response, body) {
     if (error) {
       console.log ("Error in making call to YO " + error);
+      res.json({isError: true, cause: error});
     } else if (response.statusCode != 200) {
       console.log ("Not a sucessful status code " + response.statusCode);
+      res.json({isError: true, statusCode: response.statusCode});
     } else {
-      console.log ("Yoed successfully !!");
+      console.log ("Yoed Successfully !!!");
+      res.json({isSuccess: true});
     }
   });
 
