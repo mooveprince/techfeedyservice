@@ -108,7 +108,7 @@ router.get('/trends', function(req, res) {
         console.log ("Getting the trend for " + woeid);
         getTrends (woeid,res);        //Calling the getTrends method, which is the final method
       }, function (errorMessage) {
-        res.json ({error: errorMessage});
+        console.log ("<<<<ERROR>>> " + errorMessage);
       });
     } else {
       console.log ("Getting the World Trend");
