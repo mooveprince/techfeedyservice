@@ -9,3 +9,4 @@
 127.0.0.1 - - [Sat, 12 Sep 2015 01:09:41 GMT] "GET /favicon.ico HTTP/1.1" 404 1328 "http://localhost:3000/yo?username=MOOVEPRINCE" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36"
 127.0.0.1 - - [Sat, 12 Sep 2015 01:23:39 GMT] "GET /yo?username=MOOVEPRINCE HTTP/1.1" 500 1404 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36"
 127.0.0.1 - - [Sat, 12 Sep 2015 01:24:39 GMT] "GET /yo?username=MOOVEPRINCE HTTP/1.1" 500 1401 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36"
+127.0.0.1 - - [Sat, 12 Sep 2015 04:07:45 GMT] "GET /favicon.ico HTTP/1.1" 404 1328 "http://localhost:3000/tweet/trends" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36"

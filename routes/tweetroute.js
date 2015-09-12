@@ -2,9 +2,11 @@ var express = require('express');
 var request = require('request');
 var router = express.Router();
 
-var consumerKey = process.env.TWEET_CONSUMER_KEY ;
+/* var consumerKey = process.env.TWEET_CONSUMER_KEY ;
 var consumerSecret = process.env.TWEET_CONSUMER_SECRET ;
-var toBeEncoded = consumerKey + ':' + consumerSecret;
+var toBeEncoded = consumerKey + ':' + consumerSecret; */
+
+var accessToken = process.env.TWEET_ACCESS_TOKEN;
 
 var getTokenOption = {
   url : 'https://api.twitter.com/oauth2/token',
@@ -91,7 +93,7 @@ function getTrends (woeid, res) {
 router.get('/trends', function(req, res) {
 
   //call the get access Token method by passing the callback and error function
-  getAccessToken (function (accessToken) {
+//  getAccessToken (function (accessToken) {      //Commenting out the accesstoken to make things faster
 
     getTrendsOption.headers.authorization = 'Bearer ' + accessToken;       //Assigning accesstoken to get the trends
     getWOEIdOption.headers.authorization = 'Bearer ' + accessToken;       //Same accesstoken to get the Woeid too
@@ -109,9 +111,9 @@ router.get('/trends', function(req, res) {
       getTrends ('1', res);        //World trend has woeid as 1
     }
 
-  }, function (errorMessage) {
+/*  }, function (errorMessage) {
     res.json ({error: errorMessage}); //Error Message that occurs while calling the access token
-  });
+  }); */
 
 });
 
