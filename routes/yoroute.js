@@ -18,12 +18,12 @@ router.get('/', function(req, res) {
 
   var location = req.query.location;
 
-  if ( typeof location != undefined ) {
+  if ( typeof location != 'undefined' ) {
 
     var localPointers = location.split(";");
 
     console.log ("Fetching the values for.. Lat " + localPointers[0] + " Long " + localPointers[1]);
-    
+
     sendYo.form.link += '?lat=' +localPointers[0]+ '&long=' + localPointers[1];
   }
 
