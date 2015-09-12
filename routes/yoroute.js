@@ -16,8 +16,15 @@ router.get('/', function(req, res) {
 
   sendYo.form.username = req.query.username;
 
-  if (typeof req.query.lat != undefined  && req.query.long != undefined) {
-    sendYo.form.link += '?lat=' +req.query.lat+ '&long=' + req.query.long;
+  var location = req.query.location;
+
+  if ( typeof location != undefined ) {
+
+    var localPointers = location.split(";");
+
+    console.log ("Fetching the values for.. Lat " + localPointers[0] + " Long " + localPointers[1]);
+    
+    sendYo.form.link += '?lat=' +localPointers[0]+ '&long=' + localPointers[1];
   }
 
   request.post (sendYo, function(error, response, body) {
