@@ -7,7 +7,7 @@ var sendYo = {
   form : {
     username: ' ',
     api_token: process.env.YO_API_KEY,
-    link: 'http://techfeedy.herokuapp.com/trends'  //This is where we need to serve our HTML page and call the required service
+    link: ''
   }
 }
 
@@ -15,16 +15,16 @@ router.get('/', function(req, res) {
   //Doing a yo call over here
 
   sendYo.form.username = req.query.username;
+  sendYo.form.link = 'http://techfeedy.herokuapp.com/trends';    //HTML page to be served
 
   var location = req.query.location;
 
   if ( typeof location != 'undefined' ) {
-
     var localPointers = location.split(";");
-
     console.log ("Fetching the values for.. Lat " + localPointers[0] + " Long " + localPointers[1]);
-
+    console.log ("Before Modification " + sendYo.form.link);
     sendYo.form.link += '?lat=' +localPointers[0]+ '&long=' + localPointers[1];
+    console.log ("Modified Link is " + sendYo.form.link);
   }
 
   request.post (sendYo, function(error, response, body) {
