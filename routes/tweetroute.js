@@ -65,8 +65,10 @@ function getWOEId (lat, long, callback, error) {
 
   request (getWOEIdOption, function (err, response, body) {
     if (err) {
+      console.log ("Err Occurred while calling the Twitter Acc for WOEID");
       error("Err occurred while calling Twitter Acc");
     } else if (response.statusCode != 200) {
+      console.log ("Getting error from Twitter to get the closest WOED ID");
       error(JSON.parse (response));
     } else {
       callback (JSON.parse (body)[0].woeid);
@@ -80,8 +82,10 @@ function getTrends (woeid, res) {
 
   request (getTrendsOption, function (err, response, body) {      //GET call to obtain the TRENDS
     if (err) {
+      console.log ("Err Occurred while calling the Twitter Acc for TRENDS");
       res.json( {error: 'Err occurred while getting the trend' } );
     } else if (response.statusCode != 200) {
+      console.log ("Getting error from Twitter to get the TRENDS");
       res.json( response );
     } else {
       res.json(JSON.parse(body));
